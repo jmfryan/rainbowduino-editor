@@ -1,0 +1,8 @@
+{
+    "name": "rainbow-tests"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "serialport": ">= 0.0.1"
+  }
+}

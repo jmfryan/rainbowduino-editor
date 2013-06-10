@@ -1,0 +1,21 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00b7ff;
+}
+table.pixel-grid {
+  border-collapse: collapse;
+}
+table.pixel-grid td {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+div.colour-swatch {
+  width: 40px;
+  height: 25px;
+  border: 1px solid #ddd;
+}

@@ -1,0 +1,57 @@
+form(action='.', method='POST')
+    table.pixel-grid
+        each row in colours
+            tr
+                each cell in row
+                    td(style='background-color: #{cell};')
+
+    div.farbtastic
+    div.colour-swatch
+    input(id="grid-colours", name="grid-colours", type="hidden");
+    input(type='submit');
+
+script(type='text/javascript')
+    var farbtastic;
+
+    var set_colour = function(x, y, colour) {
+        $(this).css("background-color", farbtastic.color);
+    };
+
+    $(document).ready(function() {
+        farbtastic = $.farbtastic('div.farbtastic')
+                        .linkTo('.colour-swatch')
+                        .setColor('#000000');
+
+        var drawing = false;
+
+        $('.pixel-grid').mousedown(function() {
+            drawing = true;
+        }); 
+
+        $(document).mouseup(function() {
+            drawing = false;
+        });
+
+        $('.pixel-grid td').mousedown(function(){
+            $(this).css("background-color", farbtastic.color);
+        });
+
+        $('.pixel-grid td').mouseover(function(){
+            if(drawing)
+                $(this).css("background-color", farbtastic.color);
+        });
+
+        $('form').submit(function() {
+            var colours = [];
+
+            $('table.pixel-grid tr').each(function(y) { 
+                colours[y] = [];
+                $(this).children('td').each(function(x) {
+                    colours[y][x] = $(this).css('background-color');
+                });
+            });
+
+            $('#grid-colours').val(JSON.stringify(colours));
+        });
+    });
+
